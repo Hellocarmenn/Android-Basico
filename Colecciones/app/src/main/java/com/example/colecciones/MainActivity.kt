@@ -8,8 +8,9 @@ import android.util.Log
 class MainActivity : AppCompatActivity() {
     //Agregando codigo
     val TAG ="Miactividad"
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         var name = "Carmen"
         Log.d(TAG,"Log de depuracion")
         Log.e(TAG,"Log de Error")
