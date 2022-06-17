@@ -6,7 +6,11 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.example.colecciones.databinding.ActivityMainBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.delay
 
 /*
 class MainActivity : AppCompatActivity() {
@@ -44,11 +48,18 @@ class MainActivity : AppCompatActivity(){
         binding =ActivityMainBinding.inflate((layoutInflater))
         val view = binding.root // devuelve el Linetlayout
         setContentView(view)
-        inicio()
+        inicio(view)
 
     }
 
-    private fun inicio() {
+    private fun inicio(view : View) {
+
+        lifecycleScope.launchWhenStarted {
+            binding.progressm.isVisible =true
+            delay(3000)
+            binding.progressm.isVisible=false
+        }
+
         binding.btnM.setOnClickListener {
             binding.ivM.visibility = View.VISIBLE
             if (!binding.etM.text.isEmpty()) {
@@ -58,5 +69,21 @@ class MainActivity : AppCompatActivity(){
                 Toast.makeText(this, "El campo es nulo", Toast.LENGTH_SHORT).show()
 
         }
+        MaterialAlertDialogBuilder(view.context)
+            .setTitle("My dialog")
+            .setMessage(("Este es un dialogo con MD3"))
+            .setNeutralButton("Cancelar"){dialog, which->
+
+            }
+            .setNegativeButton("Rechazar"){dialog, which->
+
+            }
+            .setPositiveButton("Aceptar"){dialog, which->
+
+            }
+            .show()
+
     }
+
+
 }
